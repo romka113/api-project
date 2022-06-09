@@ -1,10 +1,10 @@
 <div class="card">
   <div class="car-body">
-    <div *ngIf="loading">
+    <div *ngIf="loading&&!error">
       ...Info Kraunama
     </div>
     <div *ngIf="error">
-      {{errorCode}}
+      {{errorCode}} Error
     </div>
     <div *ngIf="!error && !loading">
       <h2> Eur=>USD:</h2>

@@ -10,7 +10,7 @@ export class EurToUsdService {
   constructor(private http:HttpClient) { }
 
   public convertation(){
-    return this.http.get<Money>("https://api.frankfurter.app/latest?from=EUR")
+    return this.http.get<Money>("https://api.frankfurter.app/latesst?from=EUR")
 
   }
 }
