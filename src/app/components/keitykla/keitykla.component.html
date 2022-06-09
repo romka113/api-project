@@ -1,9 +1,14 @@
 <div class="card">
   <div class="car-body">
-    Eur=>USD:
-    <div>
-      {{eurUsd?.rates?.USD}}
+    <div *ngIf="loading">
+      ...Info Kraunama
     </div>
-
+    <div *ngIf="error">
+      {{errorCode}}
+    </div>
+    <div *ngIf="!error && !loading">
+      <h2> Eur=>USD:</h2>
+      {{eurUsd?.amount}}{{eurUsd?.base}}={{eurUsd?.rates?.USD}}
+    </div>
   </div>
 </div>

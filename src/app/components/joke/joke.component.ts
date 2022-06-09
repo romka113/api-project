@@ -10,16 +10,26 @@ import { JokeService } from "../../services/joke.service";
 })
 export class JokeComponent implements OnInit {
   public joke:Joke|null=null
+  public loading=true
+  public error=false
   constructor(private jokeService:JokeService) {}
-  private loadJoke(){    this.jokeService.funnyJoke().subscribe((result)=>{
-    this.joke=result
-  })}
+  private loadJoke() {
+    this.loading = true
+    this.jokeService.funnyJoke().subscribe(
+      {next:(result) => {
+          this.joke = result
+          this.loading = false
+        },error:()=>{
+
+        this.error=true
+        }})
+
+  }
 
   ngOnInit(): void {
 this.loadJoke()
-
-
   }
+
   public nextJoke(){
     this.loadJoke()
   }

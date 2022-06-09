@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EurToUsdService } from "../../services/eur-to-usd.service";
-import { Money } from "../../models/convert";
+import { Money, Rates } from "../../models/convert";
 
 @Component({
   selector: 'app-keitykla',
@@ -9,13 +9,23 @@ import { Money } from "../../models/convert";
 })
 export class KeityklaComponent implements OnInit {
 public eurUsd:Money|null=null
+  public  error=false
+  public loading=true
+  public errorCode:number=0
+
   constructor(private eurToUsd:EurToUsdService) { }
 
   ngOnInit(): void {
-  this.eurToUsd.convertation().subscribe((eur)=>{
+  this.loading=true
+  this.eurToUsd.convertation().subscribe(
+    {next:(eur)=>{
     this.eurUsd=eur
-    console.log(eur.rates.USD);
-    })
+        this.loading=false
+
+    },error:(error)=>{
+      this.error=true
+        this.errorCode=error.status
+      }} )
   }
 
 }

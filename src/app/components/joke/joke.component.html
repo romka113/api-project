@@ -1,8 +1,16 @@
 <div class="card">
   <div class="car-body">
-    Joke:
     <div>
-      {{joke?.joke}}
+      <div *ngIf="!loading&& !error">
+        <h4>Joke:</h4>
+        {{joke?.joke}}
+      </div>
+    </div>
+    <div *ngIf="loading&&!error" class="alert-info">
+      Joke is loading...
+    </div>
+    <div *ngIf="error" class="alert-info">
+     Error
     </div>
     <button class="btn btn-success mt-3" (click)="nextJoke()">Next Joke</button>
   </div>

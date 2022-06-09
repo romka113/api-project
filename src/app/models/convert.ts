@@ -1,4 +1,4 @@
-interface Rates{
+export interface Rates{
   USD:string
 }
 
